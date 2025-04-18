@@ -1,18 +1,19 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', function () {
-    dd();
+    return redirect()->route('books.index');
 });
+
+Route::resource('books', controller: BookController::class)
+    ->only(['index', 'show']);
+
+Route::get('books/{book}/reviews/create', [ReviewController::class, 'create'])
+    ->name('books.reviews.create');
+
+Route::post('books/{book}/reviews', [ReviewController::class, 'store'])
+    ->name('books.reviews.store')
+    ->middleware('throttle:reviews');
