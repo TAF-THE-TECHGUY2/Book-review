@@ -2,10 +2,14 @@
 
 @section('content')
 
+    {{-- ✅ Debug Route to Create Book --}}
+    <script>
+        console.log("Route to create page:", "{{ route('books.create') }}");
+    </script>
+
     <div class="mb-6 flex justify-end">
         <a href="{{ route('books.create') }}" class="btn">+ Add Book</a>
     </div>
-
 
     @if(session('success'))
         <div class="mb-4 p-3 rounded bg-green-100 text-green-800">

@@ -63,8 +63,12 @@ class BookController extends Controller
 
         $book = Book::create($data);
 
-        return redirect()->route('books.show', $book)->with('success', 'Book added successfully!');
+        return redirect()
+            ->route('books.show', $book)
+            ->with('success', 'Book added! You can now add a review.');
     }
+
+
 
     public function edit(string $id)
     {
