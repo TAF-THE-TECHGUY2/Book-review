@@ -1,7 +1,7 @@
 @if ($rating)
     @for ($i = 1; $i <= 5; $i++)
-        {{ $i <= round($rating) ? '★' : '☆' }}
+        <span class="{{ $i <= round($rating) ? 'text-yellow-400' : 'text-gray-300' }}">★</span>
     @endfor
 @else
-    No rating yet
+    <span class="text-slate-400">No rating yet</span>
 @endif

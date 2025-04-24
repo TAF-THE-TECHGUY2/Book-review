@@ -11,6 +11,8 @@ class Book extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'author'];
+
     public function reviews()
     {
         return $this->hasMany(Review::class);
@@ -49,8 +51,9 @@ class Book extends Model
 
     public function scopeMinReviews(Builder $query, int $minReviews): Builder|QueryBuilder
     {
-        return $query->where('reviews_count', '>=', $minReviews);
+        return $query->having('reviews_count', '>=', $minReviews);
     }
+
 
     private function dateRangeFilter(Builder $query, $from = null, $to = null)
     {
