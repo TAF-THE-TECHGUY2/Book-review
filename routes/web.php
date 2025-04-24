@@ -23,20 +23,17 @@ Route::post('books/{book}/reviews', [ReviewController::class, 'store'])
 
 Route::get('/sample-books', function () {
 
-    Review::query()->delete();
-    Book::query()->delete();
-
-
     Book::factory()
         ->count(10)
         ->create()
         ->each(function ($book) {
+
             $book->reviews()->createMany(
                 Review::factory()->count(3)->make()->toArray()
             );
         });
 
-    return redirect()->route('books.index');
+    return redirect()->route('books.index')->with('success', '10 books with reviews added!');
 })->name('books.sample');
 
 
