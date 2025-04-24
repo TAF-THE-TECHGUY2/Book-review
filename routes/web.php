@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', fn() => redirect()->route('books.index'));
 
 
-Route::resource('books', BookController::class)
-    ->only(['index', 'show']);
+Route::resource('books', BookController::class)->only(['index', 'show', 'create', 'store']);
 
 Route::get('books/{book}/reviews/create', [ReviewController::class, 'create'])
     ->name('books.reviews.create');
@@ -38,7 +37,5 @@ Route::get('/sample-books', function () {
 
 
 
-Route::resource('books', BookController::class)->only(['index', 'show']);
-Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
-Route::post('/books', [BookController::class, 'store'])->name('books.store');
+
 

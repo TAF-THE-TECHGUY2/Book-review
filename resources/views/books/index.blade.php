@@ -2,7 +2,7 @@
 
 @section('content')
 
-    {{-- ✅ Debug Route to Create Book --}}
+
     <script>
         console.log("Route to create page:", "{{ route('books.create') }}");
     </script>

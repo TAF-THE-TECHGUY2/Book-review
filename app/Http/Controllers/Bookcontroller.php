@@ -54,6 +54,7 @@ class BookController extends Controller
         return view('books.create');
     }
 
+
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -64,11 +65,10 @@ class BookController extends Controller
         $book = Book::create($data);
 
         return redirect()
-            ->route('books.show', $book)
-            ->with('success', 'Book added! You can now add a review.');
+        ->route('books.show', $book)
+        ->withFragment('reviews')
+        ->with('success', 'Review added successfully!');
     }
-
-
 
     public function edit(string $id)
     {

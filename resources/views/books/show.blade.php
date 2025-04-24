@@ -22,7 +22,15 @@
             Add a review!</a>
     </div>
 
-    <div>
+
+    @if(session('success'))
+        <div class="mb-4 p-3 rounded bg-green-100 text-green-800">
+            {{ session('success') }}
+        </div>
+    @endif
+
+
+    <div id="reviews">
         <h2 class="mb-4 text-xl font-semibold">Reviews</h2>
         <ul>
             @forelse ($book->reviews as $review)
